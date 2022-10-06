@@ -1,10 +1,10 @@
 
-import '../assets/App.css';
-
+import '../assets/style/App.css';
+import Header from './header/Header';
 function App() {
   return (
     <>
-      
+      <Header />
     </>
   );
 }
