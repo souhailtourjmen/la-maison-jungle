@@ -56,4 +56,13 @@
   width: 100%;
   height: 100%;
 }
-
+.search-form {
+  background: white;
+  padding: 1px 4%;
+  border-radius: 15px;
+}
+.search {
+  background: transparent;
+  border: none;
+  text-align: center;
+}

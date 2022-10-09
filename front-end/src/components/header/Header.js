@@ -1,8 +1,10 @@
 
 import Logo from './logo/Logo';
 import Nav_bar from './nav-bar/Nav-bar';
-import Slide from '../../assets/img/slide1.png'
+import Slide from '../../assets/img/slide1.png';
+import Search from './search-bar/Search';
 import '../../assets/style/App.css';
+
 export default function Header ()  {
     return (
         <>
@@ -16,7 +18,8 @@ export default function Header ()  {
                 <Nav_bar />
                 </div>
                 <div className="nav-search">
-        
+                
+                <Search />
                 </div>
                 <div className="compte">
 

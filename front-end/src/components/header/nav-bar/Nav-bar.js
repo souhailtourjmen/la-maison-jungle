@@ -1,5 +1,5 @@
 import React from 'react';
-import {list_catalog} from './Controler';
+import {list_catalog} from '../../../helpers/Controler';
 import Item from './Item';
 
 
