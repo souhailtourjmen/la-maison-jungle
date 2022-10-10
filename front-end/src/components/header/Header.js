@@ -3,6 +3,9 @@ import Logo from './logo/Logo';
 import Nav_bar from './nav-bar/Nav-bar';
 import Slide from '../../assets/img/slide1.png';
 import Search from './search-bar/Search';
+import Wishlit from './wishlit/Wishlist';
+import Shop from './shop/Shop';
+import Compte from './compte/Compte';
 import '../../assets/style/App.css';
 
 export default function Header ()  {
@@ -22,6 +25,9 @@ export default function Header ()  {
                 <Search />
                 </div>
                 <div className="compte">
+                    <Shop />
+                    <Wishlit/>
+                    <Compte/>
 
                 </div>
             </div>

@@ -34,7 +34,15 @@
   flex: 1;
 }
 .compte {
-  flex: 1;
+  flex: 1 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.compte svg{ 
+  margin:0 2%;
 }
 .Header .logo img {
   width: 70px;
@@ -65,4 +73,5 @@
   background: transparent;
   border: none;
   text-align: center;
+  width: 60%;
 }
