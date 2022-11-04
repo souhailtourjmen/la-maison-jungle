@@ -1,12 +1,13 @@
 const express = require('express');
 const router =express.Router();
 const compteCtrl=require('../controllers/compteCtrl');
-router.get('/inscrit',compteCtrl.allUser);
+const auth = require('../middleware/auth');
+router.get('/inscrit',auth,compteCtrl.allUser);
 
-router.get('/:id',compteCtrl.getUser);
+router.get('/:id',auth,compteCtrl.getUser);
 
-router.put('/inscrit/:id',compteCtrl.updateUser );
+router.put('/inscrit/:id',auth,compteCtrl.updateUser );
 
-router.delete('/inscrit/:id',compteCtrl.deleteUser);
+router.delete('/inscrit/:id',auth,compteCtrl.deleteUser);
 
 module.exports =router;
