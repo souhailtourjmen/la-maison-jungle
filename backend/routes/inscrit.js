@@ -1,16 +1,12 @@
 const express = require('express');
 const router =express.Router();
-const User = require('../models/User');
-const userCtrl=require('../controllers/userCtrl');
+const compteCtrl=require('../controllers/compteCtrl');
+router.get('/inscrit',compteCtrl.allUser);
 
-router.get('/inscrit',userCtrl.allUser);
+router.get('/:id',compteCtrl.getUser);
 
-router.get('/:id',userCtrl.getUser);
+router.put('/inscrit/:id',compteCtrl.updateUser );
 
-router.post('/inscrit',userCtrl.createUser);
-
-router.put('/inscrit/:id',userCtrl.updateUser );
-
-router.delete('/inscrit/:id',userCtrl.deleteUser);
+router.delete('/inscrit/:id',compteCtrl.deleteUser);
 
 module.exports =router;

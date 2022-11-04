@@ -1,12 +1,10 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express(); 
-const  routerInscrit = require('./routes/inscrit');
-mongoose.connect('mongodb+srv://Souhail:c_2FVTUbYz_6dyS@maisonjungle.huuugpz.mongodb.net/test',
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+const  routerConpte = require('./routes/inscrit');
+const  routerUser=require('./routes/user');
+const connectBd=require("./deo/connect");
+
+connectBd.Connectbd();
 
 app.use(express.json());
 
@@ -17,6 +15,7 @@ app.use((req, res, next) => { //route for cross-domain routes
   next();
 });
 
-app.use('/',routerInscrit);
+app.use('/',routerConpte);
+app.use('/auth',routerUser);
 
 module.exports = app ; 

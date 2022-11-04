@@ -1,65 +1,41 @@
 const User = require("../models/User");
+const bcrypt= require("bcrypt");
 
-
-exports.allUser= (req,res ,next) => { //methods return all user to database 
-    User.find()
-    .then((user) => {res.status(200).json(user)})
-    .catch(err => res.status(400).json(err));
+exports.signIn=(req,res,next) => {
+    User.findOne({ email: req.body.email })
+    .then(user => {
+        if (!user) {
+            return res.status(401).json({ message: 'Paire login/mot de passe incorrecte'});
+        }
+        bcrypt.compare(req.body.password, user.password)
+            .then(valid => {
+                if (!valid) {
+                    return res.status(401).json({ message: 'Paire login/mot de passe incorrecte' });
+                }
+                res.status(200).json({
+                    userId: user._id,
+                    token: 'TOKEN'
+                });
+            })
+            .catch(error => res.status(500).json({ error }));
+    })
+    .catch(error => res.status(500).json({ error }));
+};
+exports.signUp=(req,res,next) => {
+    bcrypt.hash(req.body.password,10)
+    .then(hash => {
+            const user = new User({
+                cin:req.body.cin ,
+                first_name:req.body.first_name,
+                last_name:req.body.last_name,
+                email: req.body.email,
+                password:hash,
+            });
+            user.save()
+            .then(() => res.status(201).json({message:'account created'}))
+            .catch(err => res.status(400).json({err}))
+        })
+    .catch(err => res.status(500).json({err}));
 };
 
-exports.getUser=(req, res, next) => {//methods return one user to database 
-    User.findOne({
-      _id: req.params.id
-    }).then(
-      (user) => {
-        res.status(200).json(user);
-      }
-    ).catch(
-      (error) => {
-        res.status(404).json({
-          error: error
-        });
-      }
-    );
-  }
 
-exports.createUser=(req,res,next) => { // Methods add new user to database
-    const user=new User({
-        ...req.body
-       });
-       user.save()
-       .then(() => res.status(201).json({message:req.body}) )
-       .catch(error => res.status(400).json({error}));
-};
-
-
-exports.updateUser=(req, res, next) => {  // Methods update user to database
-    const user = new User({
-        _id: req.params.id,
-        cin: req.body.cin,
-        first_name:req.body.first_name ,
-        last_name:req.body.last_name,
-        email:req.body.email
-      });
-  User.updateOne({ _id: req.params.id }, user)
-    .then(() => res.status(200).json({ message: 'Objet modifié !'}))
-    .catch(error => res.status(400).json({ error }));
-    console.log(req.body);
-};
- 
-
-exports.deleteUser=(req, res, next) => {  //Methods delete user to database
-    User.deleteOne({_id: req.params.id}).then(
-      () => {
-        res.status(200).json({
-          message: 'Deleted!'
-        });
-      }
-    ).catch(
-      (error) => {
-        res.status(400).json({
-          error: error
-        });
-      }
-    );
-  };
