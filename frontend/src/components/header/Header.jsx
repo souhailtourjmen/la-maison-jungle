@@ -1,7 +1,7 @@
-
+import React from 'react';
 import Logo from './logo/Logo';
 import Nav_bar from './nav-bar/Nav-bar';
-import Slide from '../../assets/img/slide1.png';
+
 import Search from './search-bar/Search';
 import Wishlit from './wishlit/Wishlist';
 import Shop from './shop/Shop';
@@ -12,9 +12,6 @@ export default function Header ()  {
     return (
         <>
         <div className="top">
-        <div className="slide">
-            <img src={Slide}></img>
-        </div>
             <div className="Header">
                 <Logo />
                 <div className="nav-bar">

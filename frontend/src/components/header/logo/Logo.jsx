@@ -1,9 +1,10 @@
 import logoimg from '../../../assets/img/logo.webp'
+import {Link} from "react-router-dom";
 export default function logo () {
 
     return (
         <div className="logo">
-            <a herf=""><img src={logoimg}></img></a>
+            <Link to="/"><img src={logoimg}></img></Link>
         </div>
     )
 }

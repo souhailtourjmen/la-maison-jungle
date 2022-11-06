@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react' ;
 import {list_catalog} from '../../../helpers/Controler';
 import Item from './Item';
+
 
 
 function list_nav(){
@@ -13,7 +14,9 @@ function list_nav(){
 export default function Nav() {
     return (
         <>
-            {list_nav()}
+          {list_nav()}
         </>
+   
+ 
     )
 }
