@@ -16,8 +16,8 @@ exports.signIn=(req,res,next) => {
                     userId: user._id,
                     token:jwt.sign(
                         {userId: user._id},
-                        '=?6xh5hRs%-UV293p.8Qb(<;FN6zvS?GUV7Td8|5pHz8>8#fr3',
-                        {expiresIn:'24h'}
+                        process.env.ACCESS_TOKEN_SECRET_KEY,
+                         {expiresIn:'24h'}
                     )
                 });
             })

@@ -4,6 +4,7 @@ import Home from './layout/home/Home';
 import Header from '../src/components/header/Header'
 import Signup from './layout/signup/Signup'
 import './assets/style/index.css';
+
 import {
     BrowserRouter as Router,
     Routes,

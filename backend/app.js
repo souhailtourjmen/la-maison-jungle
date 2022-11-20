@@ -3,9 +3,7 @@ const app = express();
 const  routerConpte = require('./routes/inscrit');
 const  routerUser=require('./routes/user');
 const connectBd=require("./deo/connect");
-
 connectBd.Connectbd();
-
 app.use(express.json());
 
 app.use((req, res, next) => { //route for cross-domain routes
