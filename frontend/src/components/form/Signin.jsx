@@ -1,52 +1,48 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "./InputGroup";
-import axios from 'axios';
-import React ,{ useState,useEffect} from 'react';
-
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { auth} from "../../features/token";
 export default function signinForm() {
- 
   // state pour remplir form
-  const [form , setForm] =useState({});
-  const [message , setMsg]=useState("");
-  const [token , setToken] =useState("");
-
-
+  const [form, setForm] = useState({});
+  const [message, setMessage] = useState("");
 
   // function for remplir form
 
-  const onChangeHandler =(e)=>{
-      setForm({
-        ...form, // pour  n'est pas craser le 1er case de form pour
-        [e.target.name]: e.target.value // chaque changement il intial value dans name exemple email =value  
-      })
-      
+  const onChangeHandler = (e) => {
+    setForm({
+      ...form, // pour  n'est pas craser le 1er case de form pour
+      [e.target.name]: e.target.value, // chaque changement il intial value dans name exemple email =value
+    });
   };
 
+  // dispatch  token  remplir slice de token dans le store
 
-// post login account user
-  
- const onSubmitHandler =(e)=>{
-  console.log(form);
-      e.preventDefault();
-      axios({
-        method:'post',
-        header:{"Access-Control-Allow-Origin": "*"},
-        url: '/auth/signin',
-        data:form
-      })
-      .then((res)=>{
-        setMsg(res.data.message);
-        setToken(res.data.token)
-        console.log(res.data.message ,token);
-      })
-      
- }
+  const dispatch = useDispatch();
 
-// form  login user
-  return ( 
+  // post login account user
+
+  const onSubmitHandler = (e) => {
+    console.log(form);
+    e.preventDefault();
+    axios({
+      method: "post",
+      header: { "Access-Control-Allow-Origin": "*" },
+      url: "/auth/signin",
+      data: form,
+    }).then((res) => {
+      setMessage(res.data.message);
+      dispatch(auth({ token:res.data.token , userId:res.data.userId }));
+    });
+
+  };
+
+  // form  login user
+  return (
     <section className="loginform">
-
       <div className="container" id="container">
         <Form onSubmit={onSubmitHandler}>
           <InputGroup
@@ -73,7 +69,9 @@ export default function signinForm() {
         </Form>
       </div>
 
-      <footer></footer>
+      <footer>
+        
+      </footer>
     </section>
   );
 }
