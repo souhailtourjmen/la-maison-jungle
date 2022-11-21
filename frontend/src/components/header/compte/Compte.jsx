@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 let Compte=()=>{
     return(
         <>
-            <Link to="/signup"><FaRegUser/></Link>
+            <Link className="signin" to="/signin"><FaRegUser/>SignIn</Link>
         </>
         )
 }

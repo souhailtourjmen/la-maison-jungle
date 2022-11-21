@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt= require("bcrypt");
 const jwt = require('jsonwebtoken');
 exports.signIn=(req,res,next) => {
+    console.log(req);
     User.findOne({ email: req.body.email })
     .then(user => {
         if (!user) {
@@ -12,13 +13,15 @@ exports.signIn=(req,res,next) => {
                 if (!valid) {
                     return res.status(401).json({ message: 'Paire login/mot de passe incorrecte' });
                 }
+                
                 res.status(200).json({
                     userId: user._id,
                     token:jwt.sign(
                         {userId: user._id},
                         process.env.ACCESS_TOKEN_SECRET_KEY,
                          {expiresIn:'24h'}
-                    )
+                    ),
+                    message: 'connected'
                 });
             })
             .catch(error => res.status(500).json({ error }));
