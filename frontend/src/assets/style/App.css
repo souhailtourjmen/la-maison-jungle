@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@400;900&display=swap');
+
+@font-face {
+  font-family: 'Krylon';
+  src: url('../fonts/KRYLON/Krylon-Regular.woff2') format('woff2'),
+      url('../fonts/KRYLON/Krylon-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+:root{
+  --primary-color:#D3D6E0;
+  --secondary-color:#CD6023;
+  --Text-color:#0000;
+  --basic-text:'Roboto', sans-serif;
+  --primary-text:'Krylon';
+  --font-laptop:18px;
+  --font-tablet:12px;
+  --font-mobile:8px;
+
+}
+
+#root{
+  display: grid; 
+  grid-template-rows: 0.5fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "top top top"
+    "main main main"
+    "footer footer footer"; 
+  font-family:var(--basic-text);
+} 
+.top {
+  width: 100%;
+  height: 130px;
+  position: absolute;
+  background-color: var(--primary-color);
+  top: 0;
+  z-index: 1;
+  grid-area: top; 
+}
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+.Header {
+  margin: 1% 5%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.logo {
+  flex:0;
+  /* margin-right: 2%; */
+}
+.nav-bar {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex: 3.5 1;
+}
+.nav-bar a {
+  flex: 1;
+  text-align: center;
+}
+.nav-search {
+  flex: 1;
+}
+.compte {
+  flex: 1 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.compte svg {
+  margin: 0 2%;
+  font-size: var(--font-laptop);
+}
+.Header .logo img {
+  width: 70px;
+  height: auto;
+}
+
+.slide{
+  height: auto;
+  position: absolute;
+  width: 100%;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+}
+.search-form {
+  background: var(--bs-body-bg);
+  padding: 5px 4%;
+  border-radius: 15px;
+}
+.search {
+  background: transparent;
+  border: none;
+  text-align: center;
+  width: 80%;
+}
+input {
+  outline: none;
+}
+#root a {
+  color: var(--bs-black);
+  text-decoration: none;
+  font-size: var(--font-laptop);
+}
+#root a:hover {
+  color: var(--secondary-color);
+}
+.signin {
+  width: 150px;
+}
+.menu {
+  display: none;
+}
+@media (max-width:992px){
+  .menu {
+    display: block;
+    font-size:70px;
+  }
+  .menu:hover {
+    color: var(--secondary-color);
+    cursor: pointer;
+  }
+}
+.loginform {
+  margin: 5% auto;
+  width: 50%;
+}
+form {
+  width: 50%;
+}
